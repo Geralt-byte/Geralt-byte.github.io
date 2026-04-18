@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ "/assets/css/custom-styles.css" | relative_url }}">
   <script src="{{ "/assets/js/main.js" | relative_url }}"></script>
   {%- feed_meta -%}
   {%- if jekyll.environment == 'production' and site.google_analytics -%}
@@ -16,5 +17,6 @@
   {%- endif -%}
   {%- include extensions/code-highlight.html -%}
   {%- include extensions/photo-swipe.html -%}
+  <script src="{{ "/assets/js/code-copy.js" | relative_url }}"></script>
   {%- include custom-head.html -%}
 </head>
