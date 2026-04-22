@@ -89,8 +89,9 @@
 
 .category-pagination-controls {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
@@ -126,7 +127,8 @@
 .category-items-per-page {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 0.5rem;
   font-size: 0.75rem;
   color: #666;
 }
@@ -204,8 +206,8 @@
   <div class="category-sidebar-title" id="categoryTitle">同分类文章</div>
   <div class="category-sidebar-content">
     <ul class="category-sidebar-list" id="categoryList"></ul>
-    <div class="category-sidebar-pagination" id="categoryPagination"></div>
   </div>
+  <div class="category-sidebar-pagination" id="categoryPagination"></div>
 </div>
 
 <script>
@@ -226,24 +228,29 @@
     }
 
     // Try to get from page data - parse categories array
-    const pageContent = document.querySelector('.post-content');
-    if (pageContent) {
-      const scripts = document.querySelectorAll('script');
-      for (let script of scripts) {
-        const text = script.textContent;
-        if (text.includes('categories:')) {
-          // Match categories array: categories: [item1, item2, ...]
-          const arrayMatch = text.match(/categories:\s*\[\s*['"]([^'"]+)['"]/);
-          if (arrayMatch) {
-            return arrayMatch[1]; // Return first category in array
-          }
-          // Fallback: single category without array
-          const singleMatch = text.match(/categories:\s*['"]([^'"]+)['"]/);
-          if (singleMatch) {
-            return singleMatch[1];
+    try {
+      const pageContent = document.querySelector('.post-content');
+      if (pageContent) {
+        // Look for front matter data in page
+        const scripts = document.querySelectorAll('script');
+        for (let script of scripts) {
+          const text = script.textContent;
+          if (text.includes('categories:')) {
+            // Match categories array: categories: [item1, item2, ...]
+            const arrayMatch = text.match(/categories:\s*\[\s*['"]([^'"]+)['"]/);
+            if (arrayMatch) {
+              return arrayMatch[1]; // Return first category in array
+            }
+            // Fallback: single category without array
+            const singleMatch = text.match(/categories:\s*['"]([^'"]+)['"]/);
+            if (singleMatch) {
+              return singleMatch[1];
+            }
           }
         }
       }
+    } catch (error) {
+      console.error('Error getting category:', error);
     }
 
     return null;
@@ -326,23 +333,21 @@
 
     let paginationHTML = `
       <div class="category-pagination-controls">
+        <button
+          class="category-sidebar-nav-btn"
+          onclick="window.categorySidebar.prevPage()"
+          ${currentPage === 1 ? 'disabled' : ''}>
+          上一页
+        </button>
         <div class="category-sidebar-page-info">
           ${currentPage} / ${totalPages}
         </div>
-        <div>
-          <button
-            class="category-sidebar-nav-btn"
-            onclick="window.categorySidebar.prevPage()"
-            ${currentPage === 1 ? 'disabled' : ''}>
-            上一页
-          </button>
-          <button
-            class="category-sidebar-nav-btn"
-            onclick="window.categorySidebar.nextPage()"
-            ${currentPage === totalPages ? 'disabled' : ''}>
-            下一页
-          </button>
-        </div>
+        <button
+          class="category-sidebar-nav-btn"
+          onclick="window.categorySidebar.nextPage()"
+          ${currentPage === totalPages ? 'disabled' : ''}>
+          下一页
+        </button>
       </div>
       <div class="category-items-per-page">
         <span>每页显示:</span>

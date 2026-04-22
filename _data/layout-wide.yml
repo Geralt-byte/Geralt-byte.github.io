@@ -5,8 +5,8 @@ layout_wide:
 
   # Layout settings
   layout:
-    main_width: "64%"       # Main content width
-    sidebar_width: "18%"    # Each sidebar width
+    main_width: "60%"       # Main content width
+    sidebar_width: "20%"    # Each sidebar width
     max_content_width: "1200px"  # Maximum container width
 
   # Left sidebar - Category navigation
@@ -32,9 +32,9 @@ layout_wide:
 
 # CSS customization guide
 # To adjust column widths, edit these properties in assets/css/layout-wide.css:
-# 1. .sidebar-left: controls left sidebar width (currently flex: 0 0 18%)
-# 2. .main-wide: controls main content width (currently flex: 0 0 64%)
-# 3. .sidebar-right: controls right sidebar width (currently flex: 0 0 18%)
+# 1. .sidebar-left: controls left sidebar width (currently flex: 0 0 20%)
+# 2. .main-wide: controls main content width (currently flex: 0 0 60%)
+# 3. .sidebar-right: controls right sidebar width (currently flex: 0 0 20%)
 #
 # To adjust column positions, modify the 'order' property:
 # - order: 1 = leftmost

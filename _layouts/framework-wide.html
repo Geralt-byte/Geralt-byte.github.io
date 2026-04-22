@@ -8,12 +8,45 @@ layout: default
 /* Override wrapper constraints for wide layout */
 .page-content {
   max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .wrapper {
   max-width: 100% !important;
   padding: 0 !important;
   margin: 0 !important;
+  width: 100% !important;
+}
+
+/* Ensure framework-wide uses full width */
+.framework-wide {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Footer centering for wide layout */
+.site-footer {
+  text-align: center !important;
+  padding: 2rem 1rem !important;
+}
+
+.site-footer .wrapper {
+  max-width: 100% !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+.site-footer-inner {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.site-footer-inner div {
+  text-align: center !important;
+  margin: 0.5rem 0 !important;
 }
 </style>
 

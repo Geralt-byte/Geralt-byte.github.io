@@ -10,21 +10,22 @@
   max-width: 100%;
   margin: 0;
   padding: 0;
-  gap: 1rem;
+  gap: 0.5rem;
   width: 100%;
+  box-sizing: border-box;
 }
 
 /* Left sidebar - Category navigation */
 .sidebar-left {
-  flex: 0 0 18%;
-  min-width: 220px;
-  max-width: 280px;
+  flex: 0 0 20%;
+  min-width: 200px;
+  max-width: 250px;
   order: 1;
 }
 
 /* Main content area */
 .main-wide {
-  flex: 0 0 64%;
+  flex: 0 0 60%;
   min-width: 500px;
   max-width: 900px;
   order: 2;
@@ -32,9 +33,9 @@
 
 /* Right sidebar - Article menu */
 .sidebar-right {
-  flex: 0 0 18%;
-  min-width: 220px;
-  max-width: 280px;
+  flex: 0 0 20%;
+  min-width: 200px;
+  max-width: 250px;
   order: 3;
 }
 
@@ -270,6 +271,15 @@
   .category-sidebar {
     height: 300px;
   }
+}
+
+/* 确保分页控件居中 */
+.category-pagination-controls {
+  justify-content: center !important;
+}
+
+.category-items-per-page {
+  justify-content: center !important;
 }
 
 /* Dark mode support */
