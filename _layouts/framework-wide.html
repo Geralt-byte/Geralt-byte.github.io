@@ -6,6 +6,15 @@ layout: default
 <meta property="article:category" content="{{ page.categories[0] }}">
 {% endif %}
 
+<script>
+// Store all posts category data for sidebar filtering
+window.postsCategoryData = {
+  {% for post in site.posts %}
+  "{{ post.url | relative_url }}": "{{ post.categories[0] }}"{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+};
+</script>
+
 <link rel="stylesheet" href="{{ "/assets/css/layout-wide.css" | relative_url }}">
 
 <style>
