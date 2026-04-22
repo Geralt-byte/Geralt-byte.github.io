@@ -2,7 +2,7 @@
 layout: post-wide
 title:  "LeetCode 1. 两数之和 - Wide布局示例"
 date:   2026-04-22 14:00:00 +0800
-categories: algorithm
+categories: [algorithm]
 ---
 
 ## 题目描述
