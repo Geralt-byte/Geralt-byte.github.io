@@ -8,9 +8,10 @@
   display: flex;
   flex-direction: row;
   max-width: 100%;
-  margin: 0 auto;
-  padding: 0 1rem;
-  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+  width: 100%;
 }
 
 /* Left sidebar - Category navigation */
@@ -246,7 +247,7 @@
 
 @media (max-width: 768px) {
   .framework-wide {
-    padding: 0 0.5rem;
+    padding: 0;
   }
 
   .framework-wide .post-content h1 {

@@ -218,23 +218,29 @@
     posts: []
   };
 
-  // Get current page category
+  // Get current page category (first item in categories array)
   function getCurrentCategory() {
     const pageElement = document.querySelector('meta[property="article:category"]');
     if (pageElement) {
       return pageElement.getAttribute('content');
     }
 
-    // Try to get from page data
+    // Try to get from page data - parse categories array
     const pageContent = document.querySelector('.post-content');
     if (pageContent) {
       const scripts = document.querySelectorAll('script');
       for (let script of scripts) {
         const text = script.textContent;
         if (text.includes('categories:')) {
-          const match = text.match(/categories:\s*\[?['"]([^'"]+)['"]/);
-          if (match) {
-            return match[1];
+          // Match categories array: categories: [item1, item2, ...]
+          const arrayMatch = text.match(/categories:\s*\[\s*['"]([^'"]+)['"]/);
+          if (arrayMatch) {
+            return arrayMatch[1]; // Return first category in array
+          }
+          // Fallback: single category without array
+          const singleMatch = text.match(/categories:\s*['"]([^'"]+)['"]/);
+          if (singleMatch) {
+            return singleMatch[1];
           }
         }
       }
@@ -246,6 +252,8 @@
   // Get all posts from same category
   function getPostsByCategory(category) {
     const allPosts = [];
+
+    // Try to get posts from navigation links
     const postLinks = document.querySelectorAll('a[href*="/posts/"], a[href*="/page"]');
 
     postLinks.forEach(link => {
@@ -260,8 +268,32 @@
       }
     });
 
-    // Filter posts (simplified - in real implementation would check categories)
-    return allPosts.slice(0, 50); // Limit to 50 posts for demo
+    // Also try to get posts from related posts section
+    const relatedLinks = document.querySelectorAll('.post-related a.post-link');
+    relatedLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      const title = link.textContent.trim();
+
+      if (href && title && !allPosts.find(post => post.url === href)) {
+        allPosts.push({
+          title: title,
+          url: href
+        });
+      }
+    });
+
+    // Filter out duplicates and sort
+    const uniquePosts = [];
+    const seenUrls = new Set();
+    allPosts.forEach(post => {
+      if (!seenUrls.has(post.url)) {
+        seenUrls.add(post.url);
+        uniquePosts.push(post);
+      }
+    });
+
+    // Limit to reasonable number
+    return uniquePosts.slice(0, 50);
   }
 
   // Render posts for current page
