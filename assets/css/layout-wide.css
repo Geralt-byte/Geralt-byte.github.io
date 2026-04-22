@@ -9,8 +9,8 @@
   flex-direction: row;
   max-width: 100%;
   margin: 0;
-  padding: 0;
-  gap: 0.5rem;
+  padding: 0 1rem;
+  gap: 1rem;
   width: 100%;
   box-sizing: border-box;
 }
@@ -25,7 +25,7 @@
 
 /* Main content area */
 .main-wide {
-  flex: 0 0 60%;
+  flex: 1;
   min-width: 500px;
   max-width: 900px;
   order: 2;
@@ -33,10 +33,11 @@
 
 /* Right sidebar - Article menu */
 .sidebar-right {
-  flex: 0 0 20%;
+  flex: 0 0 auto;
   min-width: 200px;
-  max-width: 250px;
+  max-width: 300px;
   order: 3;
+  margin-left: auto;
 }
 
 /* Wider post content styling */

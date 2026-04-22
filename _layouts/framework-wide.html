@@ -2,6 +2,10 @@
 layout: default
 ---
 
+{% if page.categories %}
+<meta property="article:category" content="{{ page.categories[0] }}">
+{% endif %}
+
 <link rel="stylesheet" href="{{ "/assets/css/layout-wide.css" | relative_url }}">
 
 <style>
@@ -28,7 +32,7 @@ layout: default
 /* Footer centering for wide layout */
 .site-footer {
   text-align: center !important;
-  padding: 2rem 1rem !important;
+  padding: 0.8rem 1rem !important;
 }
 
 .site-footer .wrapper {
