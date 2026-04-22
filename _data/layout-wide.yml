@@ -1,0 +1,29 @@
+# Wide layout configuration with dual sidebars
+layout_wide:
+  enabled: true
+  name: "Wide Layout"
+
+  # Layout settings
+  layout:
+    main_width: "70%"       # Main content width
+    sidebar_width: "15%"    # Each sidebar width
+    max_content_width: "1200px"  # Maximum container width
+
+  # Left sidebar - Category navigation
+  sidebar_left:
+    enabled: true
+    title: "同分类文章"
+    items_per_page: 10      # Number of articles per page
+    show_pagination: true
+    use_first_category: true  # Use first category only
+
+  # Right sidebar - Article TOC
+  sidebar_right:
+    enabled: true
+    title: "目录"
+
+  # Content styling
+  content:
+    font_size: "1.1rem"      # Larger font size
+    line_height: "1.8"       # Better readability
+    max_width: "100%"        # Full width within main container

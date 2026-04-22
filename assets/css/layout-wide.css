@@ -1,0 +1,290 @@
+/**
+ * Wide Layout Styles
+ * Provides a dual-sidebar layout with wider content area
+ */
+
+/* Framework container */
+.framework-wide {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  gap: 1.5rem;
+}
+
+/* Left sidebar - Category navigation */
+.sidebar-left {
+  flex: 0 0 15%;
+  min-width: 200px;
+  max-width: 250px;
+  order: 1;
+}
+
+/* Main content area */
+.main-wide {
+  flex: 0 0 70%;
+  min-width: 600px;
+  max-width: 800px;
+  order: 2;
+}
+
+/* Right sidebar - Article menu */
+.sidebar-right {
+  flex: 0 0 15%;
+  min-width: 200px;
+  max-width: 250px;
+  order: 3;
+}
+
+/* Wider post content styling */
+.framework-wide .post-content {
+  max-width: 100%;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.framework-wide .post-content h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+.framework-wide .post-content h2 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #34495e;
+  border-bottom: 1px solid #bdc3c7;
+  padding-bottom: 0.3rem;
+}
+
+.framework-wide .post-content h3 {
+  font-size: 1.7rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-top: 1.8rem;
+  margin-bottom: 0.8rem;
+  color: #555;
+}
+
+.framework-wide .post-content h4 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-top: 1.5rem;
+  margin-bottom: 0.7rem;
+  color: #666;
+}
+
+.framework-wide .post-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+  color: #333;
+}
+
+.framework-wide .post-content ul,
+.framework-wide .post-content ol {
+  margin-left: 2rem;
+  margin-bottom: 1.2rem;
+}
+
+.framework-wide .post-content li {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.framework-wide .post-content pre {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  font-size: 1rem;
+}
+
+.framework-wide .post-content code {
+  background-color: #f8f9fa;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+}
+
+.framework-wide .post-content pre code {
+  background-color: transparent;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.framework-wide .post-content blockquote {
+  border-left: 4px solid #3498db;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: #555;
+  font-style: italic;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 0 4px 4px 0;
+  font-size: 1.1rem;
+}
+
+/* Right sidebar post menu adjustments */
+.framework-wide .sidebar-right .post-menu {
+  position: sticky;
+  top: 20px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.framework-wide .sidebar-right .post-menu-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+.framework-wide .sidebar-right .post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.framework-wide .sidebar-right .post-menu li a {
+  display: block;
+  padding: 0.4rem 0.8rem;
+  color: #555;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-bottom: 0.2rem;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.framework-wide .sidebar-right .post-menu li a:hover {
+  background-color: #f8f9fa;
+  color: #3498db;
+}
+
+.framework-wide .sidebar-right .post-menu li.active a {
+  background-color: #3498db;
+  color: white;
+  font-weight: 500;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .framework-wide {
+    flex-direction: column;
+  }
+
+  .sidebar-left,
+  .main-wide,
+  .sidebar-right {
+    flex: 1 1 auto;
+    min-width: 100%;
+    max-width: 100%;
+    order: unset;
+  }
+
+  .sidebar-left {
+    order: 1;
+  }
+
+  .main-wide {
+    order: 2;
+  }
+
+  .sidebar-right {
+    order: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .framework-wide .post-content h1 {
+    font-size: 2rem;
+  }
+
+  .framework-wide .post-content h2 {
+    font-size: 1.75rem;
+  }
+
+  .framework-wide .post-content h3 {
+    font-size: 1.4rem;
+  }
+
+  .framework-wide .post-content p,
+  .framework-wide .post-content li {
+    font-size: 1rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .framework-wide .post-content h1,
+  .framework-wide .post-content h2,
+  .framework-wide .post-content h3,
+  .framework-wide .post-content h4,
+  .framework-wide .post-content h5,
+  .framework-wide .post-content h6 {
+    color: #ecf0f1;
+  }
+
+  .framework-wide .post-content h1,
+  .framework-wide .post-content h2 {
+    border-bottom-color: #3498db;
+  }
+
+  .framework-wide .post-content p,
+  .framework-wide .post-content li {
+    color: #bdc3c7;
+  }
+
+  .framework-wide .post-content pre {
+    background-color: #2c3e50;
+    border-color: #34495e;
+  }
+
+  .framework-wide .post-content code {
+    background-color: #2c3e50;
+  }
+
+  .framework-wide .post-content blockquote {
+    background-color: #2c3e50;
+    border-left-color: #3498db;
+    color: #bdc3c7;
+  }
+
+  .framework-wide .sidebar-right .post-menu-title {
+    color: #ecf0f1;
+    border-bottom-color: #3498db;
+  }
+
+  .framework-wide .sidebar-right .post-menu li a {
+    color: #bdc3c7;
+  }
+
+  .framework-wide .sidebar-right .post-menu li a:hover {
+    background-color: #2c3e50;
+    color: #3498db;
+  }
+
+  .framework-wide .sidebar-right .post-menu li.active a {
+    background-color: #3498db;
+    color: white;
+  }
+}

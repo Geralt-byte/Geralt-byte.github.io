@@ -1,0 +1,301 @@
+<style type="text/css" media="screen">
+.category-sidebar {
+  padding: 0;
+  margin: 0;
+}
+
+.category-sidebar-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+.category-sidebar-content {
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.category-sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-sidebar-item {
+  margin-bottom: 0.5rem;
+}
+
+.category-sidebar-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #555;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+}
+
+.category-sidebar-link:hover {
+  background-color: #f8f9fa;
+  color: #3498db;
+  padding-left: 1rem;
+}
+
+.category-sidebar-link.active {
+  background-color: #3498db;
+  color: white;
+  font-weight: 500;
+}
+
+.category-sidebar-pagination {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-sidebar-page-info {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.category-sidebar-nav-btn {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid #dee2e6;
+  background-color: white;
+  color: #495057;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.category-sidebar-nav-btn:hover:not(:disabled) {
+  background-color: #3498db;
+  color: white;
+  border-color: #3498db;
+}
+
+.category-sidebar-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.category-sidebar-nav-btn.active {
+  background-color: #3498db;
+  color: white;
+  border-color: #3498db;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .category-sidebar-title {
+    color: #ecf0f1;
+    border-bottom-color: #3498db;
+  }
+
+  .category-sidebar-link {
+    color: #bdc3c7;
+  }
+
+  .category-sidebar-link:hover {
+    background-color: #2c3e50;
+    color: #3498db;
+  }
+
+  .category-sidebar-pagination {
+    border-top-color: #34495e;
+  }
+
+  .category-sidebar-page-info {
+    color: #bdc3c7;
+  }
+
+  .category-sidebar-nav-btn {
+    background-color: #2c3e50;
+    color: #bdc3c7;
+    border-color: #34495e;
+  }
+
+  .category-sidebar-nav-btn:hover:not(:disabled) {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+  }
+}
+</style>
+
+<div class="category-sidebar">
+  <div class="category-sidebar-title" id="categoryTitle">同分类文章</div>
+  <div class="category-sidebar-content">
+    <ul class="category-sidebar-list" id="categoryList"></ul>
+    <div class="category-sidebar-pagination" id="categoryPagination"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Configuration
+  const CONFIG = {
+    itemsPerPage: 10,
+    currentPage: 1,
+    currentCategory: null,
+    posts: []
+  };
+
+  // Get current page category
+  function getCurrentCategory() {
+    const pageElement = document.querySelector('meta[property="article:category"]');
+    if (pageElement) {
+      return pageElement.getAttribute('content');
+    }
+
+    // Try to get from page data
+    const pageContent = document.querySelector('.post-content');
+    if (pageContent) {
+      const scripts = document.querySelectorAll('script');
+      for (let script of scripts) {
+        const text = script.textContent;
+        if (text.includes('categories:')) {
+          const match = text.match(/categories:\s*\[?['"]([^'"]+)['"]/);
+          if (match) {
+            return match[1];
+          }
+        }
+      }
+    }
+
+    return null;
+  }
+
+  // Get all posts from same category
+  function getPostsByCategory(category) {
+    const allPosts = [];
+    const postLinks = document.querySelectorAll('a[href*="/posts/"], a[href*="/page"]');
+
+    postLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      const title = link.textContent.trim();
+
+      if (href && title && href.includes('.html')) {
+        allPosts.push({
+          title: title,
+          url: href
+        });
+      }
+    });
+
+    // Filter posts (simplified - in real implementation would check categories)
+    return allPosts.slice(0, 50); // Limit to 50 posts for demo
+  }
+
+  // Render posts for current page
+  function renderPosts(page) {
+    const listElement = document.getElementById('categoryList');
+    const start = (page - 1) * CONFIG.itemsPerPage;
+    const end = start + CONFIG.itemsPerPage;
+    const pagePosts = CONFIG.posts.slice(start, end);
+    const currentUrl = window.location.pathname;
+
+    listElement.innerHTML = pagePosts.map((post, index) => {
+      const isActive = post.url === currentUrl ? 'active' : '';
+      return `
+        <li class="category-sidebar-item">
+          <a href="${post.url}" class="category-sidebar-link ${isActive}">
+            ${start + index + 1}. ${post.title}
+          </a>
+        </li>
+      `;
+    }).join('');
+
+    renderPagination();
+  }
+
+  // Render pagination controls
+  function renderPagination() {
+    const paginationElement = document.getElementById('categoryPagination');
+    const totalPages = Math.ceil(CONFIG.posts.length / CONFIG.itemsPerPage);
+    const currentPage = CONFIG.currentPage;
+
+    let paginationHTML = `
+      <div class="category-sidebar-page-info">
+        ${currentPage} / ${totalPages}
+      </div>
+      <div>
+        <button
+          class="category-sidebar-nav-btn"
+          onclick="window.categorySidebar.prevPage()"
+          ${currentPage === 1 ? 'disabled' : ''}>
+          上一页
+        </button>
+        <button
+          class="category-sidebar-nav-btn"
+          onclick="window.categorySidebar.nextPage()"
+          ${currentPage === totalPages ? 'disabled' : ''}>
+          下一页
+        </button>
+      </div>
+    `;
+
+    paginationElement.innerHTML = paginationHTML;
+  }
+
+  // Initialize sidebar
+  function init() {
+    CONFIG.currentCategory = getCurrentCategory();
+
+    if (CONFIG.currentCategory) {
+      document.getElementById('categoryTitle').textContent = CONFIG.currentCategory;
+      CONFIG.posts = getPostsByCategory(CONFIG.currentCategory);
+    } else {
+      CONFIG.posts = getPostsByCategory('All');
+    }
+
+    // Set current page based on current post
+    const currentUrl = window.location.pathname;
+    const currentIndex = CONFIG.posts.findIndex(post => post.url === currentUrl);
+    if (currentIndex !== -1) {
+      CONFIG.currentPage = Math.floor(currentIndex / CONFIG.itemsPerPage) + 1;
+    }
+
+    renderPosts(CONFIG.currentPage);
+
+    // Expose methods globally
+    window.categorySidebar = {
+      nextPage: function() {
+        const totalPages = Math.ceil(CONFIG.posts.length / CONFIG.itemsPerPage);
+        if (CONFIG.currentPage < totalPages) {
+          CONFIG.currentPage++;
+          renderPosts(CONFIG.currentPage);
+        }
+      },
+      prevPage: function() {
+        if (CONFIG.currentPage > 1) {
+          CONFIG.currentPage--;
+          renderPosts(CONFIG.currentPage);
+        }
+      },
+      goToPage: function(page) {
+        const totalPages = Math.ceil(CONFIG.posts.length / CONFIG.itemsPerPage);
+        if (page >= 1 && page <= totalPages) {
+          CONFIG.currentPage = page;
+          renderPosts(CONFIG.currentPage);
+        }
+      }
+    };
+  }
+
+  // Run initialization
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
