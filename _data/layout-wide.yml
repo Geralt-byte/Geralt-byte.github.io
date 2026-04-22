@@ -5,8 +5,8 @@ layout_wide:
 
   # Layout settings
   layout:
-    main_width: "70%"       # Main content width
-    sidebar_width: "15%"    # Each sidebar width
+    main_width: "64%"       # Main content width
+    sidebar_width: "18%"    # Each sidebar width
     max_content_width: "1200px"  # Maximum container width
 
   # Left sidebar - Category navigation
@@ -16,14 +16,30 @@ layout_wide:
     items_per_page: 10      # Number of articles per page
     show_pagination: true
     use_first_category: true  # Use first category only
+    position: "left"        # Left side of page
 
   # Right sidebar - Article TOC
   sidebar_right:
     enabled: true
     title: "目录"
+    position: "right"       # Right side of page
 
   # Content styling
   content:
-    font_size: "1.1rem"      # Larger font size
-    line_height: "1.8"       # Better readability
+    font_size: "1rem"       # Default font size
+    line_height: "1.7"      # Default line height
     max_width: "100%"        # Full width within main container
+
+# CSS customization guide
+# To adjust column widths, edit these properties in assets/css/layout-wide.css:
+# 1. .sidebar-left: controls left sidebar width (currently flex: 0 0 18%)
+# 2. .main-wide: controls main content width (currently flex: 0 0 64%)
+# 3. .sidebar-right: controls right sidebar width (currently flex: 0 0 18%)
+#
+# To adjust column positions, modify the 'order' property:
+# - order: 1 = leftmost
+# - order: 2 = middle
+# - order: 3 = rightmost
+#
+# To adjust min/max widths, modify min-width and max-width properties
+# in the same CSS classes.

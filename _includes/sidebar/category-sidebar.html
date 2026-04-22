@@ -2,20 +2,45 @@
 .category-sidebar {
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 120px);
 }
 
 .category-sidebar-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
   color: #2c3e50;
   border-bottom: 2px solid #3498db;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
+  flex-shrink: 0;
 }
 
 .category-sidebar-content {
-  max-height: calc(100vh - 200px);
+  flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 0.8rem;
+  scrollbar-width: thin;
+  scrollbar-color: #3498db #f1f1f1;
+}
+
+.category-sidebar-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.category-sidebar-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.category-sidebar-content::-webkit-scrollbar-thumb {
+  background: #3498db;
+  border-radius: 3px;
+}
+
+.category-sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: #2980b9;
 }
 
 .category-sidebar-list {
@@ -25,24 +50,27 @@
 }
 
 .category-sidebar-item {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .category-sidebar-link {
   display: block;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+  border-radius: 3px;
   text-decoration: none;
   color: #555;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   transition: all 0.2s ease;
   line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .category-sidebar-link:hover {
   background-color: #f8f9fa;
   color: #3498db;
-  padding-left: 1rem;
+  padding-left: 0.8rem;
 }
 
 .category-sidebar-link.active {
@@ -52,28 +80,36 @@
 }
 
 .category-sidebar-pagination {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid #e9ecef;
+  flex-shrink: 0;
+  padding: 0.6rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
+}
+
+.category-pagination-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 .category-sidebar-page-info {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #666;
+  font-weight: 500;
 }
 
 .category-sidebar-nav-btn {
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.6rem;
   border: 1px solid #dee2e6;
   background-color: white;
   color: #495057;
-  border-radius: 4px;
+  border-radius: 3px;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   transition: all 0.2s ease;
+  font-weight: 500;
 }
 
 .category-sidebar-nav-btn:hover:not(:disabled) {
@@ -87,9 +123,26 @@
   cursor: not-allowed;
 }
 
-.category-sidebar-nav-btn.active {
-  background-color: #3498db;
-  color: white;
+.category-items-per-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.category-items-select {
+  padding: 0.2rem 0.4rem;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  background-color: white;
+  color: #495057;
+  cursor: pointer;
+}
+
+.category-items-select:focus {
+  outline: none;
   border-color: #3498db;
 }
 
@@ -98,6 +151,14 @@
   .category-sidebar-title {
     color: #ecf0f1;
     border-bottom-color: #3498db;
+  }
+
+  .category-sidebar-content::-webkit-scrollbar-track {
+    background: #2c3e50;
+  }
+
+  .category-sidebar-content::-webkit-scrollbar-thumb {
+    background: #3498db;
   }
 
   .category-sidebar-link {
@@ -110,23 +171,31 @@
   }
 
   .category-sidebar-pagination {
-    border-top-color: #34495e;
+    background-color: #2c3e50;
+    border-color: #34495e;
   }
 
-  .category-sidebar-page-info {
+  .category-sidebar-page-info,
+  .category-items-per-page {
     color: #bdc3c7;
   }
 
   .category-sidebar-nav-btn {
-    background-color: #2c3e50;
+    background-color: #34495e;
     color: #bdc3c7;
-    border-color: #34495e;
+    border-color: #4a5568;
   }
 
   .category-sidebar-nav-btn:hover:not(:disabled) {
     background-color: #3498db;
     color: white;
     border-color: #3498db;
+  }
+
+  .category-items-select {
+    background-color: #34495e;
+    color: #bdc3c7;
+    border-color: #4a5568;
   }
 }
 </style>
@@ -224,22 +293,34 @@
     const currentPage = CONFIG.currentPage;
 
     let paginationHTML = `
-      <div class="category-sidebar-page-info">
-        ${currentPage} / ${totalPages}
+      <div class="category-pagination-controls">
+        <div class="category-sidebar-page-info">
+          ${currentPage} / ${totalPages}
+        </div>
+        <div>
+          <button
+            class="category-sidebar-nav-btn"
+            onclick="window.categorySidebar.prevPage()"
+            ${currentPage === 1 ? 'disabled' : ''}>
+            上一页
+          </button>
+          <button
+            class="category-sidebar-nav-btn"
+            onclick="window.categorySidebar.nextPage()"
+            ${currentPage === totalPages ? 'disabled' : ''}>
+            下一页
+          </button>
+        </div>
       </div>
-      <div>
-        <button
-          class="category-sidebar-nav-btn"
-          onclick="window.categorySidebar.prevPage()"
-          ${currentPage === 1 ? 'disabled' : ''}>
-          上一页
-        </button>
-        <button
-          class="category-sidebar-nav-btn"
-          onclick="window.categorySidebar.nextPage()"
-          ${currentPage === totalPages ? 'disabled' : ''}>
-          下一页
-        </button>
+      <div class="category-items-per-page">
+        <span>每页显示:</span>
+        <select class="category-items-select" onchange="window.categorySidebar.changeItemsPerPage(this.value)">
+          <option value="5" ${CONFIG.itemsPerPage === 5 ? 'selected' : ''}>5</option>
+          <option value="10" ${CONFIG.itemsPerPage === 10 ? 'selected' : ''}>10</option>
+          <option value="15" ${CONFIG.itemsPerPage === 15 ? 'selected' : ''}>15</option>
+          <option value="20" ${CONFIG.itemsPerPage === 20 ? 'selected' : ''}>20</option>
+          <option value="25" ${CONFIG.itemsPerPage === 25 ? 'selected' : ''}>25</option>
+        </select>
       </div>
     `;
 
@@ -287,6 +368,11 @@
           CONFIG.currentPage = page;
           renderPosts(CONFIG.currentPage);
         }
+      },
+      changeItemsPerPage: function(value) {
+        CONFIG.itemsPerPage = parseInt(value);
+        CONFIG.currentPage = 1; // Reset to first page
+        renderPosts(CONFIG.currentPage);
       }
     };
   }
