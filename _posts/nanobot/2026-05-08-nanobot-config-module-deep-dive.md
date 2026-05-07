@@ -1,11 +1,8 @@
 ---
 layout: post-wide
-title: "Nanobot Config模块深度解析 - Python配置管理最佳实践"
-date: 2026-05-08 20:00:00 +08:00
-categories:
-  - python
-  - configuration
-  - nanobot
+title: "Nanobot Config模块解析"
+date: 2026-05-08 20:00:00 +0800
+categories: [nanobot]
 ---
 
 ## 一、Config 模块整体架构
