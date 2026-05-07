@@ -1,7 +1,7 @@
 ---
 layout: post-wide
 title:  "Nanobot Config模块解析"
-date:   2026-05-08 20:00:00 +0800
+date:   2026-05-07 20:00:00 +0800
 categories: [nanobot]
 ---
 
