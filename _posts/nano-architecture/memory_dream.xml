@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="embed.diagrams.net">
+  <diagram id="ezLi2apu1xVzHHmP-EuQ" name="dream-flow">
+    <mxGraphModel dx="2249" dy="1538" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1" value="Memory Dream 流程图" vertex="1">
+          <mxGeometry height="40" width="480" x="700" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Dream.run()" vertex="1">
+          <mxGeometry height="50" width="200" x="840" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#ffe6cc;strokeColor=#d79b00;" value="获取最新dream_cursor" vertex="1">
+          <mxGeometry height="40" width="200" x="840" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#ffe6cc;strokeColor=#d79b00;" value="读取未处理history.jsonl" vertex="1">
+          <mxGeometry height="40" width="200" x="840" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#ffe6cc;strokeColor=#d79b00;" value="创建处理批次&#xa;entries[:batch_size]" vertex="1">
+          <mxGeometry height="40" width="200" x="840" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" value="构建处理上下文&lt;br&gt;• 历史文本(截断)&lt;br&gt;• MEMORY.md(年龄注释)&lt;br&gt;• SOUL.md&lt;br&gt;• USER.md" vertex="1">
+          <mxGeometry height="90" width="200" x="840" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-9" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" value="Phase 1: 分析阶段" vertex="1">
+          <mxGeometry height="30" width="400" x="550" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#e1d5e7;strokeColor=#9673a6;" value="LLM分析调用&#xa;• system: dream_phase1.md&#xa;• user: 历史 + 文件上下文" vertex="1">
+          <mxGeometry height="70" width="200" x="840" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-13" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" value="Phase 2: 执行阶段" vertex="1">
+          <mxGeometry height="30" width="400" x="550" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#ffe6cc;strokeColor=#d79b00;" value="加载现有技能列表" vertex="1">
+          <mxGeometry height="40" width="200" x="840" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" value="构建Phase 2上下文&#xa;• Phase 1分析结果&#xa;• 文件上下文&#xa;• 现有技能列表" vertex="1">
+          <mxGeometry height="70" width="200" x="840" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#d5e8d4;strokeColor=#82b366;" value="React循环&lt;br&gt;• system: dream_phase2.md&lt;br&gt;• tools: read_file, edit_file, write_file&lt;br&gt;• 支持创建新技能" vertex="1">
+          <mxGeometry height="90" width="200" x="840" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#e1d5e7;strokeColor=#9673a6;" value="更新dream_cursor" vertex="1">
+          <mxGeometry height="40" width="200" x="840" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#ffe6cc;strokeColor=#d79b00;" value="截断history.jsonl&#xa;compact_history()" vertex="1">
+          <mxGeometry height="50" width="200" x="840" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Git自动提交&#xa;• 提交所有更改&#xa;• 包含Phase 1分析&#xa;• 记录commit sha" vertex="1">
+          <mxGeometry height="70" width="200" x="840" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" value="历史文本处理" vertex="1">
+          <mxGeometry height="40" width="160" x="334" y="435" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" value="格式化为时间戳+内容" vertex="1">
+          <mxGeometry height="40" width="160" x="334" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" value="年龄注释处理" vertex="1">
+          <mxGeometry height="40" width="160" x="334" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-27" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" value="MEMORY.md添加&#xa;← Nd天标记" vertex="1">
+          <mxGeometry height="40" width="160" x="334" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-28" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" value="只标记超过&#xa;14天的内容" vertex="1">
+          <mxGeometry height="40" width="160" x="334" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-34" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" target="P0gQr7h1zQq-RXFiSSkw-3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-35" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" target="P0gQr7h1zQq-RXFiSSkw-4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-38" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="P0gQr7h1zQq-RXFiSSkw-7" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="909.9473684210529" y="379.97744360902266" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-39" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" target="P0gQr7h1zQq-RXFiSSkw-8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-40" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" target="P0gQr7h1zQq-RXFiSSkw-10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-43" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="P0gQr7h1zQq-RXFiSSkw-14" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="909.9473684210529" y="799.9774436090227" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-44" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" target="P0gQr7h1zQq-RXFiSSkw-15" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-45" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" target="P0gQr7h1zQq-RXFiSSkw-16" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-48" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="P0gQr7h1zQq-RXFiSSkw-19" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="909.9473684210529" y="1009.9774436090224" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-49" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" target="P0gQr7h1zQq-RXFiSSkw-20" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-53" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="P0gQr7h1zQq-RXFiSSkw-21" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="939.9473684210529" y="1220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-55" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;dashed=1;" target="P0gQr7h1zQq-RXFiSSkw-23" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-57" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="P0gQr7h1zQq-RXFiSSkw-25" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="414.0526315789475" y="540" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-59" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;dashed=1;" target="P0gQr7h1zQq-RXFiSSkw-27" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P0gQr7h1zQq-RXFiSSkw-60" edge="1" parent="1" source="P0gQr7h1zQq-RXFiSSkw-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;dashed=1;" target="P0gQr7h1zQq-RXFiSSkw-28" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="embed.diagrams.net">
+  <diagram id="gYBp_sClamSQLdu7RL5b" name="skills-loader-flow">
+    <mxGraphModel dx="1666" dy="984" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="fwekovDBS1l0xJOpX_4l-1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1" value="Skills Loader 模块流程图" vertex="1">
+          <mxGeometry height="40" width="480" x="700" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="SkillsLoader" vertex="1">
+          <mxGeometry height="50" width="200" x="840" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="get_always_skills()&#xa;获取always=true的技能列表" vertex="1">
+          <mxGeometry height="50" width="200" x="1035" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#ffe6cc;strokeColor=#d79b00;" value="list_skills(filter_unavailable=True)&#xa;获取可用技能列表" vertex="1">
+          <mxGeometry height="70" width="210" x="1030" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#fff2cc;strokeColor=#d6b656;" value="过滤disabled_skills&lt;br&gt;移除被禁用的技能" vertex="1">
+          <mxGeometry height="70" width="200" x="1035" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#fff2cc;strokeColor=#d6b656;" value="检查requirements&#xa;• bins: CLI工具可用性&#xa;• env: 环境变量存在性" vertex="1">
+          <mxGeometry height="60" width="200" x="1035" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#ffe6cc;strokeColor=#d79b00;" value="load_skill()&#xa;读取SKILL.md文件内容" vertex="1">
+          <mxGeometry height="50" width="200" x="1035" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#e1d5e7;strokeColor=#9673a6;" value="格式化为&#xa;### Skill: {name}格式&#xa;用---分隔多个技能" vertex="1">
+          <mxGeometry height="60" width="200" x="1035" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="注入到System Prompt&#xa;Always技能完整内容" vertex="1">
+          <mxGeometry height="50" width="200" x="1035" y="940" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="list_skills()&#xa;获取所有技能列表" vertex="1">
+          <mxGeometry height="50" width="200" x="660" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="build_skills_summary()&#xa;构建技能摘要" vertex="1">
+          <mxGeometry height="50" width="200" x="660" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#fff2cc;strokeColor=#d6b656;" value="检查可用性&#xa;_check_requirements()&#xa;确定技能是否可用" vertex="1">
+          <mxGeometry height="60" width="200" x="660" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#e1d5e7;strokeColor=#9673a6;" value="格式化技能条目&#xa;- **{name}** — {description} {path}" vertex="1">
+          <mxGeometry height="60" width="200" x="660" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#fff2cc;strokeColor=#d6b656;" value="处理不可用技能&#xa;添加(unavailable: {missing})后缀&#xa;列出缺失的bins或env" vertex="1">
+          <mxGeometry height="80" width="200" x="660" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-24" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#e1d5e7;strokeColor=#9673a6;" value="返回技能列表摘要&#xa;Markdown格式" vertex="1">
+          <mxGeometry height="50" width="200" x="660" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="注入到System Prompt&#xa;技能列表摘要（排除always）" vertex="1">
+          <mxGeometry height="50" width="200" x="660" y="930" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-31" edge="1" parent="1" source="fwekovDBS1l0xJOpX_4l-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" target="fwekovDBS1l0xJOpX_4l-4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-32" edge="1" parent="1" source="fwekovDBS1l0xJOpX_4l-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" target="fwekovDBS1l0xJOpX_4l-18" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-33" edge="1" parent="1" source="fwekovDBS1l0xJOpX_4l-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=14;" target="fwekovDBS1l0xJOpX_4l-5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-34" edge="1" parent="1" source="fwekovDBS1l0xJOpX_4l-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=14;" target="fwekovDBS1l0xJOpX_4l-6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-37" edge="1" parent="1" source="fwekovDBS1l0xJOpX_4l-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=14;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="fwekovDBS1l0xJOpX_4l-9" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1135" y="820" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-38" edge="1" parent="1" source="fwekovDBS1l0xJOpX_4l-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=14;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="fwekovDBS1l0xJOpX_4l-13" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1135" y="779.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-43" edge="1" parent="1" source="fwekovDBS1l0xJOpX_4l-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=14;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="fwekovDBS1l0xJOpX_4l-15" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1135.0588235294122" y="880" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-44" edge="1" parent="1" source="fwekovDBS1l0xJOpX_4l-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=14;" target="fwekovDBS1l0xJOpX_4l-16" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-45" edge="1" parent="1" source="fwekovDBS1l0xJOpX_4l-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=14;" target="fwekovDBS1l0xJOpX_4l-19" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-46" edge="1" parent="1" source="fwekovDBS1l0xJOpX_4l-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=14;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="fwekovDBS1l0xJOpX_4l-21" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="499.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-48" edge="1" parent="1" source="fwekovDBS1l0xJOpX_4l-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=14;" target="fwekovDBS1l0xJOpX_4l-22" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-49" edge="1" parent="1" source="fwekovDBS1l0xJOpX_4l-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=14;" target="fwekovDBS1l0xJOpX_4l-23" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-50" edge="1" parent="1" source="fwekovDBS1l0xJOpX_4l-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=14;" target="fwekovDBS1l0xJOpX_4l-24" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fwekovDBS1l0xJOpX_4l-51" edge="1" parent="1" source="fwekovDBS1l0xJOpX_4l-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=14;" target="fwekovDBS1l0xJOpX_4l-25" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
